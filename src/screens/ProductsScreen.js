@@ -7,17 +7,23 @@ import {
   FlatList,
   Pressable,
 } from "react-native";
-import products from "../data/products";
+import { useSelector, useDispatch } from "react-redux";
+import { productsSlice } from "../store/productsSlice";
 
 function ProductsScreen() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
-
+  const products = useSelector((state) => state.products.products);
   return (
     <FlatList
       data={products}
       renderItem={({ item }) => (
         <Pressable
-          onPress={() => navigation.navigate("Products Details")}
+          onPress={() => {
+            // Update Selected Product
+            dispatch(productsSlice.actions.setSelectedProduct(item.id));
+            navigation.navigate("Products Details");
+          }}
           style={styles.itemConteiner}
         >
           <Image source={{ uri: item.image }} style={styles.image} />
@@ -25,7 +31,7 @@ function ProductsScreen() {
       )}
       numColumns={2}
     />
-  );
+  ); 
 }
 
 const styles = StyleSheet.create({
