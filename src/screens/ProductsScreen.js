@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, FlatList } from "react-native";
 import products from "../data/products";
 
-const ProductsScreens = () => {
+function ProductsScreen() {
   return (
     <FlatList
       data={products}
@@ -13,7 +13,7 @@ const ProductsScreens = () => {
       numColumns={2}
     />
   );
-};
+}
 
 const styles = StyleSheet.create({
   itemConteiner: {
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductsScreens;
+export default ProductsScreen;
